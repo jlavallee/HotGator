@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+  <Document>
+  
+  
+  
+  
+  
+  
+  
+  
+  <Placemark>
+    <name>PLUG (Linux)</name>
+    <description><![CDATA[http://pdxlinux.org/<p>Venue: Portland State University (PSU) - Smith Memorial Center</p>]]></description>
+    <Point>
+      <coordinates>-122.683808,45.511624</coordinates>
+    </Point>
+    <TimeSpan>
+      <begin>2007-03-01T19:00:00-08:00</begin>
+      <end>2007-03-01T21:00:00-08:00</end>
+    </TimeSpan>
+  </Placemark>
+  
+  
+  
+  
+  <Placemark>
+    <name>PDX PHP</name>
+    <description><![CDATA[http://pdxphp.org/<p>Venue: Free Geek</p>]]></description>
+    <Point>
+      <coordinates>-122.655707,45.510575</coordinates>
+    </Point>
+    <TimeSpan>
+      <begin>2007-03-06T19:00:00-08:00</begin>
+      <end>2007-03-06T21:00:00-08:00</end>
+    </TimeSpan>
+  </Placemark>
+  
+  
+  
+  <Placemark>
+    <name>PDXLUG (Linux)</name>
+    <description><![CDATA[http://www.pdxlug.org/<p>Venue: Fireside Coffee Lodge</p>]]></description>
+    <Point>
+      <coordinates>-122.652396,45.500952</coordinates>
+    </Point>
+    <TimeSpan>
+      <begin>2007-03-08T19:00:00-08:00</begin>
+      <end>2007-03-08T20:00:00-08:00</end>
+    </TimeSpan>
+  </Placemark>
+  
+  </Document>
+</kml>
