@@ -16,7 +16,7 @@ HOTGATOR = function() {
         function correctHeight() {
             var window_height = $(window).height();
             var header_height = $("#search-container").offset().top;
-            $("#search-results").height(window_height - header_height - 20); //-20 for padding
+            $("#search-container").height(window_height - header_height - 20); //-20 for padding
             $("#map_canvas").height(window_height - header_height);
         }
         correctHeight();
@@ -24,15 +24,16 @@ HOTGATOR = function() {
 
         var infowindow = new google.maps.InfoWindow();
 
-        function add_info_window(map, marker, infowindow, content) {
+        function add_info_window(map, marker, infowindow, content, event) {
             function open_info_window() {
                 infowindow.open(map,marker);
                 infowindow.setContent(content);
             }
             google.maps.event.addListener(marker, 'click', open_info_window);
-            $("#open-an-infowindow").click(open_info_window);
+            $("#event-" + event.id).click(open_info_window);
         }
-        
+
+        // Loop through all events
         $.each(mapData, function(index,event){ 
 
             var place = new google.maps.LatLng(event.venue.latitude, event.venue.longitude);
@@ -43,7 +44,9 @@ HOTGATOR = function() {
                   title:event.title
             });   
 
-            add_info_window(map, marker, infowindow, event.title);
+            $("#search-container").append('<a href="#" id="event-' + event.id + '"> ' + event.title + '</a><br/>');
+
+            add_info_window(map, marker, infowindow, event.title, event);
 
         });
 
