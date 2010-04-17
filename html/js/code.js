@@ -7,7 +7,7 @@ HOTGATOR = function() {
 
         var latlng = new google.maps.LatLng(45.5374054,  -122.65028);
         var myOptions = {
-            zoom: 8,
+            zoom: 11,
             center: latlng,
             mapTypeId: google.maps.MapTypeId.TERRAIN
         };
@@ -24,10 +24,10 @@ HOTGATOR = function() {
 
         var infowindow = new google.maps.InfoWindow();
 
-        function add_info_window(map, marker, infowindow, content, event) {
+        function add_info_window(map, marker, infowindow, event) {
             function open_info_window() {
                 infowindow.open(map,marker);
-                infowindow.setContent(content);
+                infowindow.setContent(event.title);
             }
             google.maps.event.addListener(marker, 'click', open_info_window);
             $("#event-" + event.id).click(open_info_window);
@@ -44,11 +44,12 @@ HOTGATOR = function() {
                   title:event.title
             });   
 
-            $("#search-container").append('<a href="#" id="event-' + event.id + '"> ' + event.title + '</a><br/>');
+            $("#search-container").append('<a href="#" id="event-' + event.id + '"> ' + event.title + '</a>');
 
-            add_info_window(map, marker, infowindow, event.title, event);
+            add_info_window(map, marker, infowindow, event);
 
         });
+
 
     };
 
