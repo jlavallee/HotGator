@@ -27,7 +27,17 @@ HOTGATOR = function() {
         function add_info_window(map, marker, infowindow, event) {
             function open_info_window() {
                 infowindow.open(map,marker);
-                infowindow.setContent(event.title);
+                console.log(event.start_time);
+                infowindow.setContent('<h1>' + event.title + '</h1>'
+                    + '<div>'
+                    + '<div class="date"><abbr class="dtstart" title="' + event.start_time 
+                    + '">Saturday, April 17, 2010 from 10am</abbr>&ndash;<abbr class="dtend" title="'
+                    + event.end_time
+                    + '">7pm</abbr></div>'
+                    + '</div>'
+
+
+                );
             }
             google.maps.event.addListener(marker, 'click', open_info_window);
             $("#event-" + event.id).click(open_info_window);
@@ -37,14 +47,13 @@ HOTGATOR = function() {
         $.each(mapData, function(index,event){ 
 
             var place = new google.maps.LatLng(event.venue.latitude, event.venue.longitude);
-            console.log(place);
             var marker = new google.maps.Marker({
                   position: place, 
                   map: map, 
                   title:event.title
             });   
 
-            $("#search-container").append('<a href="#" id="event-' + event.id + '"> ' + event.title + '</a>');
+            $("#search-container").append('<a href="#" id="event-' + event.id + '"> ' + event.title + '</a><br/>');
 
             add_info_window(map, marker, infowindow, event);
 
