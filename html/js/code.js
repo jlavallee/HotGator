@@ -13,7 +13,6 @@ HOTGATOR = function() {
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-        //var myGeographicCoordinates = new google.maps.GLatLng(mapData[0].latitude, mapData[0].longitude);
         function correctHeight() {
             var window_height = $(window).height();
             var header_height = $("#search-container").offset().top;
@@ -22,6 +21,14 @@ HOTGATOR = function() {
         }
         correctHeight();
         jQuery.event.add(window, "resize", correctHeight);
+
+        var place = new google.maps.LatLng(mapData[0].venue.latitude, mapData[0].venue.longitude);
+        console.log(place);
+        var marker = new google.maps.Marker({
+              position: place, 
+              map: map, 
+              title:"Hello World!"
+        });   
 
     };
 
