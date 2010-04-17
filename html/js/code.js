@@ -1,5 +1,5 @@
 $(document).ready(function(){
-var latlng = new google.maps.LatLng(-34.397, 150.644);
+var latlng = new google.maps.LatLng(45.5374054,  -122.65028);
 var myOptions = {
     zoom: 8,
     center: latlng,
