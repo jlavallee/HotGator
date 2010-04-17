@@ -1,4 +1,5 @@
-$(document).ready(function(){
+var makeMap = function() {
+
 var latlng = new google.maps.LatLng(45.5374054,  -122.65028);
 var myOptions = {
     zoom: 8,
@@ -16,4 +17,6 @@ function correctHeight() {
 correctHeight();
 jQuery.event.add(window, "resize", correctHeight);
 
-});
+};
+
+$(document).ready(makeMap);
