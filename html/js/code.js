@@ -22,13 +22,30 @@ HOTGATOR = function() {
         correctHeight();
         jQuery.event.add(window, "resize", correctHeight);
 
-        var place = new google.maps.LatLng(mapData[0].venue.latitude, mapData[0].venue.longitude);
-        console.log(place);
-        var marker = new google.maps.Marker({
-              position: place, 
-              map: map, 
-              title:"Hello World!"
-        });   
+        var infowindow = new google.maps.InfoWindow();
+
+        function add_info_window(map, marker, infowindow, content) {
+            function open_info_window() {
+                infowindow.open(map,marker);
+                infowindow.setContent(content);
+            }
+            google.maps.event.addListener(marker, 'click', open_info_window);
+            $("#open-an-infowindow").click(open_info_window);
+        }
+        
+        $.each(mapData, function(index,event){ 
+
+            var place = new google.maps.LatLng(event.venue.latitude, event.venue.longitude);
+            console.log(place);
+            var marker = new google.maps.Marker({
+                  position: place, 
+                  map: map, 
+                  title:event.title
+            });   
+
+            add_info_window(map, marker, infowindow, event.title);
+
+        });
 
     };
 
