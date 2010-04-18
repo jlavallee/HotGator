@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map srs="+init=epsg:4326">
+    <Style name="style">
+        <Rule>
+            <RasterSymbolizer>
+                <CssParameter name="scaling">bilinear</CssParameter>
+                <RasterColorizer>
+                  <!-- TODO - tweak these colors -->
+                  <ColorBand value="0" color="rgb(0,0,0)" label="&lt;0"></ColorBand>
+                  <ColorBand value=".1" color="rgb(0,60,20)" midpoints="199"></ColorBand>
+                  <ColorBand value=".2" color="rgb(0,200,10)" midpoints="199"></ColorBand>
+                  <ColorBand value=".5" color="rgb(234,234,10)" midpoints="199"></ColorBand>
+                  <ColorBand value="1" color="rgb(214,185,10)" midpoints="199"></ColorBand>
+                  <ColorBand value="2" color="rgb(195,136,20)" midpoints="199"></ColorBand>
+                  <ColorBand value="4" color="rgb(175,88,29)" midpoints="199"></ColorBand>
+                  <ColorBand value="5" color="rgb(133,72,34)" midpoints="499"></ColorBand>
+                  <ColorBand value="7" color="rgb(200,200,200)" midpoints="1099"></ColorBand>
+                  <ColorBand value="10" color="rgb(255,255,255)" midpoints="999"></ColorBand>
+                  <ColorBand value="12" color="rgb(255,255,255)"></ColorBand>
+                </RasterColorizer>
+            </RasterSymbolizer>
+        </Rule>
+    </Style>
+    <Layer name="heat" srs="+init=epsg:4326">
+        <StyleName>style</StyleName>
+        <Datasource>
+            <Parameter name="file">/Users/spring/projects/HotGator/pdx.tif</Parameter>
+            <Parameter name="type">gdal</Parameter>
+            <Parameter name="band">1</Parameter>
+        </Datasource>
+    </Layer>
+</Map>
