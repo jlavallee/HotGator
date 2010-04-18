@@ -2,8 +2,17 @@ HOTGATOR = function() {
 
     var mapData;
 
+    var dayIcon = [ 
+            'img/sunday.png',
+            'img/monday.png',
+            'img/tuesday.png',
+            'img/wednesday.png',
+            'img/thursday.png',
+            'img/friday.png',
+            'img/saturday.png',
+    ];
+
     function calagatorCallback (data) { 
-            console.log(data);
             makeMap(data);
     };
 
@@ -34,16 +43,19 @@ HOTGATOR = function() {
 
         var infowindow = new google.maps.InfoWindow();
 
+        function getDayIcon(date) {
+            var d = new Date(date);
+            return (dayIcon[d.getDay()]);
+        }
+
         function add_info_window(map, marker, infowindow, event) {
             function open_info_window() {
                 infowindow.open(map,marker);
-                console.log(event.start_time);
                 infowindow.setContent('<h1>' + event.title + '</h1>'
                     + '<div>'
-                    + '<div class="date"><abbr class="dtstart" title="' + event.start_time 
-                    + '">Saturday, April 17, 2010 from 10am</abbr>&ndash;<abbr class="dtend" title="'
-                    + event.end_time
-                    + '">7pm</abbr></div>'
+                    + '<div class="date">' + event.start_time 
+                    + '</div>'
+                    + ' '
                     + '</div>'
 
 
@@ -55,12 +67,17 @@ HOTGATOR = function() {
 
         // Loop through all events
         $.each(mapData, function(index,event){ 
-
+            if (!event.venue)  { 
+                return true;
+            }
             var place = new google.maps.LatLng(event.venue.latitude, event.venue.longitude);
+            var eventDate = event.start_time.split('T');
+            var day = new Date(eventDate[0]).getDay();
             var marker = new google.maps.Marker({
                   position: place, 
                   map: map, 
-                  title:event.title
+                  title: event.title,
+                  icon: dayIcon[day]
             });   
 
             $("#search-container").append('<a href="#" id="event-' + event.id + '"> ' + event.title + '</a><br/>');
