@@ -56,6 +56,15 @@ table {
     float:left;
 }
 
+div.eventlink {
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+}
+
+div.eventlink a {
+    text-decoration: none;
+}
 
 
 

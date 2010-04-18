@@ -49,22 +49,26 @@ HOTGATOR = function() {
         }
 
         function add_info_window(map, marker, infowindow, event) {
+            var ed = event.start_time.split('T');
+            var properDate = ed[0].split('-');
             function open_info_window() {
                 infowindow.open(map,marker);
-                infowindow.setContent('<h1>' + event.title + '</h1>'
+                infowindow.setContent('<br/><h1>' + event.title + '</h1>'
                     + '<div>'
-                    + '<div class="date">' + event.start_time 
+                    + '<div class="date">' + properDate[1] + '-' + properDate[2] + '-' + properDate[0]
+                    + '<br/>'
+                    + ed[1]
                     + '</div>'
                     + ' '
+                    + event.venue.title
                     + '</div>'
-
-
                 );
             }
             google.maps.event.addListener(marker, 'click', open_info_window);
             $("#event-" + event.id).click(open_info_window);
         }
 
+        var lastDate = '0000-00-00';
         // Loop through all events
         $.each(mapData, function(index,event){ 
             if (!event.venue)  { 
@@ -80,8 +84,12 @@ HOTGATOR = function() {
                   icon: dayIcon[day]
             });   
 
-            $("#search-container").append('<a href="#" id="event-' + event.id + '"> ' + event.title + '</a><br/>');
+            if (eventDate[0] == lastDate)
+                $("#search-container").append( '<div class="eventlink">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="event-' + event.id + '"> ' + event.title + '</a></div>');
+            else
+                $("#search-container").append( '<br/><div class="eventlink">' + eventDate[0] + ' <br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="event-' + event.id + '"> ' + event.title + '</a></div>');
 
+            lastDate = eventDate[0];
             add_info_window(map, marker, infowindow, event);
 
         });
