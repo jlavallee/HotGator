@@ -1,4 +1,4 @@
-HOTGATOR = function() {
+var HotGator = function() {
 
     var mapData;
     var dateLimit = new Date('3000-01-01');
@@ -18,7 +18,7 @@ HOTGATOR = function() {
     };
 
     var calagatorData = function() {
-        var ajaxCall = $.getScript("http://calagator.org/events.json?callback=HOTGATOR.calagatorCallback");
+        var ajaxCall = $.getScript("http://calagator.org/events.json?callback=HotGator.calagatorCallback");
     };
 
     calagatorData();
