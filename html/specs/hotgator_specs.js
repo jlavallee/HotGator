@@ -1,7 +1,7 @@
 Hump.Unit(function() {
-  describe('Stuff', function() {
-        it("1 == 1", function() {
-            expect(1).to(eq,1);
+  describe('The HotGator namespace', function() {
+        it("exists", function() {
+            expect(HotGator).to(be_true);
         });
   });
 });
