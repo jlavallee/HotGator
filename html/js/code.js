@@ -1,6 +1,7 @@
 HOTGATOR = function() {
 
     var mapData;
+    var dateLimit = new Date('3000-01-01');
 
     var dayIcon = [ 
             'img/sunday.png',
@@ -13,7 +14,7 @@ HOTGATOR = function() {
     ];
 
     function calagatorCallback (data) { 
-            makeMap(data);
+        makeMap(data);
     };
 
     var calagatorData = function() {
@@ -22,15 +23,34 @@ HOTGATOR = function() {
 
     calagatorData();
 
+    var update = function(form) {
+
+        console.log(form);
+        var newdate = new Date($("select:first").val());
+        if (!newdate) {
+            return false;
+        }
+
+        dateLimit = newdate;
+        console.log(dateLimit);
+        calagatorData();
+        return false;
+    };
+
     var makeMap = function(mapData) {
 
+        // Cleanup 
+        $(".eventlink").remove();
+
         var latlng = new google.maps.LatLng(45.5374054,  -122.65028);
+
         var myOptions = {
             zoom: 11,
             center: latlng,
             mapTypeId: google.maps.MapTypeId.TERRAIN
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        console.log("made map");
 
         function correctHeight() {
             var window_height = $(window).height();
@@ -39,7 +59,9 @@ HOTGATOR = function() {
             $("#map_canvas").height(window_height - header_height);
         }
         correctHeight();
+
         jQuery.event.add(window, "resize", correctHeight);
+        console.log("made window");
 
         var infowindow = new google.maps.InfoWindow();
 
@@ -69,13 +91,24 @@ HOTGATOR = function() {
         }
 
         var lastDate = '0000-00-00';
+        console.log("About to loop through events with " + dateLimit );
+
         // Loop through all events
         $.each(mapData, function(index,event){ 
+            
             if (!event.venue)  { 
                 return true;
             }
             var place = new google.maps.LatLng(event.venue.latitude, event.venue.longitude);
+
+            // Filter dates of events
+            // TODO: add update of the search-container
             var eventDate = event.start_time.split('T');
+            var comparedate = new Date(eventDate[0]);
+            if (comparedate > dateLimit) {
+                console.log("skipping event on day" + eventDate[0]);
+                return true;
+            }
             var day = new Date(eventDate[0]).getDay();
             var marker = new google.maps.Marker({
                   position: place, 
@@ -95,9 +128,12 @@ HOTGATOR = function() {
         });
     };
 
+    
+
     return {
         makeMap: makeMap,
-        calagatorCallback: calagatorCallback
+        calagatorCallback: calagatorCallback,
+        update: update
     };
 
 }();

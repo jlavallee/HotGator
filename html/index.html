@@ -10,6 +10,15 @@
 <body>
 <div id="page-wrap">
     <div id="header">
+        <form
+            action=""
+            onsubmit="return HOTGATOR.update(this);">
+          <label for="q">Limit?</label>
+          <select name="q" id="q" onchange="HOTGATOR.update(this)">
+              <option value="All" selected>All</option>
+              <option value="2010-04-22">2010-04-22</option>
+          </select>
+         </form>
         fun header stuff goes here
     </div>
     <div id="search-container">
