@@ -23,11 +23,6 @@ var HotGator = function() {
         makeMap(data);
     };
 
-    var calagatorData = function() {
-        var ajaxCall = $.getScript("http://calagator.org/events.json?callback=HotGator.calagatorCallback");
-    };
-
-    calagatorData();
 
     var update = function(form) {
 
@@ -140,5 +135,6 @@ var HotGator = function() {
         calagatorCallback: calagatorCallback,
         update: update
     };
+
 
 }();
