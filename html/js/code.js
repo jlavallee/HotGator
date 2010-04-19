@@ -2,6 +2,13 @@ var HotGator = function() {
     var mapData;
     var dateLimit = new Date('3000-01-01');
 
+    // This is to keep everything working even if console.log doesn't exist
+    var debug = function(msg) {
+        if (console.log) {
+            console.log(msg);
+        }
+    };
+
     var dayIcon = [ 
             'img/sunday.png',
             'img/monday.png',
@@ -24,14 +31,14 @@ var HotGator = function() {
 
     var update = function(form) {
 
-        console.log(form);
+        debug(form);
         var newdate = new Date($("select:first").val());
         if (!newdate) {
             return false;
         }
 
         dateLimit = newdate;
-        console.log(dateLimit);
+        debug(dateLimit);
         calagatorData();
         return false;
     };
@@ -49,7 +56,7 @@ var HotGator = function() {
             mapTypeId: google.maps.MapTypeId.TERRAIN
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        console.log("made map");
+        debug("made map");
 
         var correctHeight = function () {
             var window_height = $(window).height();
@@ -60,7 +67,7 @@ var HotGator = function() {
         correctHeight();
 
         jQuery.event.add(window, "resize", correctHeight);
-        console.log("made window");
+        debug("made window");
 
         var infowindow = new google.maps.InfoWindow();
 
@@ -90,7 +97,7 @@ var HotGator = function() {
         }
 
         var lastDate = '0000-00-00';
-        console.log("About to loop through events with " + dateLimit );
+        debug("About to loop through events with " + dateLimit );
 
         // Loop through all events
         $.each(mapData, function(index,event){ 
@@ -105,7 +112,7 @@ var HotGator = function() {
             var eventDate = event.start_time.split('T');
             var comparedate = new Date(eventDate[0]);
             if (comparedate > dateLimit) {
-                console.log("skipping event on day" + eventDate[0]);
+                debug("skipping event on day" + eventDate[0]);
                 return true;
             }
             var day = new Date(eventDate[0]).getDay();
@@ -126,8 +133,6 @@ var HotGator = function() {
 
         });
     };
-
-    
 
     return {
         makeMap: makeMap,
