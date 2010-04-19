@@ -55,7 +55,8 @@ var HotGator = function() {
             center: latlng,
             mapTypeId: google.maps.MapTypeId.TERRAIN
         };
-        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        var map = new google.maps.Map($("#map_canvas")[0], myOptions);
         debug("made map");
 
         var correctHeight = function () {
