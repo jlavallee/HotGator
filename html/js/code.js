@@ -1,5 +1,4 @@
 var HotGator = function() {
-
     var mapData;
     var dateLimit = new Date('3000-01-01');
 
@@ -13,7 +12,7 @@ var HotGator = function() {
             'img/saturday.png',
     ];
 
-    function calagatorCallback (data) { 
+    var calagatorCallback =  function (data) {
         makeMap(data);
     };
 
@@ -52,7 +51,7 @@ var HotGator = function() {
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         console.log("made map");
 
-        function correctHeight() {
+        var correctHeight = function () {
             var window_height = $(window).height();
             var header_height = $("#search-container").offset().top;
             $("#search-container").height(window_height - header_height - 20); //-20 for padding
@@ -65,12 +64,12 @@ var HotGator = function() {
 
         var infowindow = new google.maps.InfoWindow();
 
-        function getDayIcon(date) {
+        var getDayIcon = function (date) {
             var d = new Date(date);
             return (dayIcon[d.getDay()]);
         }
 
-        function add_info_window(map, marker, infowindow, event) {
+        var add_info_window = function (map, marker, infowindow, event) {
             var ed = event.start_time.split('T');
             var properDate = ed[0].split('-');
             function open_info_window() {
