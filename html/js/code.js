@@ -9,6 +9,55 @@ var HotGator = function() {
         }
     };
 
+    var generateDateList = function() {
+
+        var today = new Date();
+        // Generate a list
+        // 4 days, 2 weeks, 1 month, 1 quarter, remaining
+        // myDate.setDate(myDate.getDate()+5);
+        today.setDate(today.getDate()+4);
+        var fourdays = today.toDateString();
+        today.setDate(today.getDate()+10);
+        var twoweeks = today.toDateString();
+        today.setDate(today.getDate()+14);
+        var fourweeks = today.toDateString();
+        today.setDate(today.getDate()+77);
+        var quarter = today.toDateString();
+        today.setDate(today.getDate()+266);
+        var year = today.toDateString();
+        var dates = [
+            fourdays,
+            twoweeks,
+            quarter,
+            year
+                ];
+        console.log(dates);
+        return dates;
+
+    };
+
+    var dates = generateDateList();
+
+    var createOptions = function(dates) {
+        var optionList = '';
+
+        $.each(dates, function(index,value) {
+            optionList = optionList + '<option value="' + dates[0] + '">' + dates[0] + '</option>';
+        });
+
+        var headerText = 
+            '<form action=""><label for="q">Limit?</label>'
+            + '<select name="q" id="q" onchange="HOTGATOR.update(this)">'
+            + optionList
+            + '</select>'
+            + '</form>';
+
+        $("#search-header").append(headerText);
+        console.log(headerText);
+    };
+
+    createOptions(dates);
+
     var dayIcon = [ 
             'img/sunday.png',
             'img/monday.png',
