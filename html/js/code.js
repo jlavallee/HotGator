@@ -11,27 +11,16 @@ var HotGator = function() {
 
     var generateDateList = function() {
 
-        var today = new Date();
         // Generate a list
-        // 4 days, 2 weeks, 1 month, 1 quarter, remaining
-        // myDate.setDate(myDate.getDate()+5);
-        today.setDate(today.getDate()+4);
-        var fourdays = today.toDateString();
-        today.setDate(today.getDate()+10);
-        var twoweeks = today.toDateString();
-        today.setDate(today.getDate()+14);
-        var fourweeks = today.toDateString();
-        today.setDate(today.getDate()+77);
-        var quarter = today.toDateString();
-        today.setDate(today.getDate()+266);
-        var year = today.toDateString();
-        var dates = [
-            fourdays,
-            twoweeks,
-            quarter,
-            year
-                ];
-        console.log(dates);
+        // 4 days, 2 weeks, 1 month, 1 quarter, and year
+        var dates = [];
+        var intervals = [ 4, 14, 28, 90, 356 ];
+        for ( var days in intervals ){
+            var today = new Date();
+            today.setDate(today.getDate() + days);
+            dates.push(today.toDateString());
+        }
+        debug(dates);
         return dates;
 
     };
@@ -53,7 +42,7 @@ var HotGator = function() {
             + '</form>';
 
         $("#search-header").append(headerText);
-        console.log(headerText);
+        debug(headerText);
     };
 
     createOptions(dates);
