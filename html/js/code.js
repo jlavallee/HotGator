@@ -83,7 +83,7 @@ var HotGator = function() {
 
         dateLimit = newdate;
         debug(dateLimit);
-        calagatorData();
+        getCalagatorData();
         return false;
     };
 
@@ -171,7 +171,7 @@ var HotGator = function() {
             if (eventDate[0] == lastDate)
                 $("#search-container").append( '<div class="eventlink">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="event-' + event.id + '"> ' + event.title + '</a></div>');
             else
-                $("#search-container").append( '<br/><div class="eventlink">' + eventDate[0] + ' <br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="event-' + event.id + '"> ' + event.title + '</a></div>');
+                $("#search-container").append( '<div class="eventlink"><br/>' + eventDate[0] + ' <br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="event-' + event.id + '"> ' + event.title + '</a></div>');
 
             lastDate = eventDate[0];
             add_info_window(map, marker, infowindow, event);
