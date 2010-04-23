@@ -34,7 +34,7 @@ var HotGator = function() {
 
         dateLimit = newdate;
         debug(dateLimit);
-        calagatorData();
+        getCalagatorData();
         return false;
     };
 
