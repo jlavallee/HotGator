@@ -40,23 +40,22 @@ var HotGator = function() {
 
     var createOptions = function(dates) {
         var optionList = '';
+        $("form").remove();
 
         $.each(dates, function(index,value) {
-            optionList = optionList + '<option value="' + dates[0] + '">' + dates[0] + '</option>';
+            optionList = optionList + '<option id="dateopt" value="' + value + '">' + value + '</option>';
         });
 
         var headerText = 
-            '<form action=""><label for="q">Limit?</label>'
-            + '<select name="q" id="q" onchange="HOTGATOR.update(this)">'
+            '<form id="dateopt" action="" onsubmit="return HotGator.update(this);">\n<label for="q">Limit?</label>'
+            + '<select name="q" id="q" onchange="HotGator.update(this)">'
             + optionList
             + '</select>'
             + '</form>';
 
-        $("#search-header").append(headerText);
-        console.log(headerText);
+        $("#header").append(headerText);
     };
 
-    createOptions(dates);
 
     var dayIcon = [ 
             'img/sunday.png',
@@ -175,6 +174,7 @@ var HotGator = function() {
 
             lastDate = eventDate[0];
             add_info_window(map, marker, infowindow, event);
+            createOptions(dates);
 
         });
     };
