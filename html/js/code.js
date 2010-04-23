@@ -15,9 +15,9 @@ var HotGator = function() {
         // 4 days, 2 weeks, 1 month, 1 quarter, and year
         var dates = [];
         var intervals = [ 4, 14, 28, 90, 356 ];
-        for ( var days in intervals ){
+        for ( var index in intervals ){
             var today = new Date();
-            today.setDate(today.getDate() + days);
+            today.setDate(today.getDate() + intervals[index]);
             dates.push(today.toDateString());
         }
         debug(dates);
